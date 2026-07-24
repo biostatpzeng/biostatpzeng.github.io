@@ -546,6 +546,13 @@ h3 {
   margin: 0;
 }
 
+.home-contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 24px 36px;
+  align-items: start;
+}
+
 .home-contact div {
   display: grid;
   grid-template-columns: 82px minmax(0, 1fr);
@@ -560,6 +567,41 @@ h3 {
 
 .home-contact dd {
   margin: 0;
+}
+
+.home-wechat {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  width: 132px;
+  justify-self: end;
+  text-align: center;
+}
+
+.home-wechat img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-wechat-copy h3 {
+  margin: 0 0 3px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.home-wechat-copy p {
+  margin: 0;
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
 }
 
 .section-title-row {
@@ -1425,49 +1467,6 @@ address {
   color: var(--rust);
 }
 
-.news-follow {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  width: fit-content;
-  max-width: 100%;
-  margin: 14px 0 0 auto;
-  padding: 12px 0 0;
-  border-top: 1px solid var(--line);
-}
-
-.news-follow-copy h2 {
-  margin: 0 0 5px;
-  color: var(--gold);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.news-follow-copy p {
-  margin: 0;
-  color: #000;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.35;
-  white-space: nowrap;
-}
-
-.news-follow-qr {
-  flex: 0 0 112px;
-  width: 112px;
-}
-
-.news-follow-qr img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .site-footer {
   display: flex;
   align-items: center;
@@ -1573,14 +1572,14 @@ address {
     gap: 8px;
   }
 
-  .news-follow {
-    justify-content: flex-start;
-    margin-left: 0;
+  .home-contact-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .news-follow-qr {
-    flex-basis: 112px;
-    width: 112px;
+  .home-wechat {
+    justify-self: start;
+    width: 126px;
   }
 
   .leadership-grid {
@@ -1692,6 +1691,14 @@ address {
     gap: 0;
   }
 
+  .home-contact-layout {
+    gap: 14px;
+  }
+
+  .home-wechat {
+    width: 118px;
+  }
+
   .publications-intro {
     padding: 34px 0 24px;
   }
@@ -1706,11 +1713,6 @@ address {
 
   .news-intro {
     padding: 34px 0 24px;
-  }
-
-  .news-follow {
-    align-items: flex-start;
-    padding-top: 12px;
   }
 
   .page-title {
