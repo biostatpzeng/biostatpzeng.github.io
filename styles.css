@@ -550,7 +550,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 132px;
   gap: 24px 36px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .home-contact div {
@@ -572,8 +572,10 @@ h3 {
 .home-wechat {
   display: grid;
   justify-items: center;
+  align-content: space-between;
   gap: 8px;
   width: 132px;
+  height: 100%;
   justify-self: end;
   text-align: center;
 }
@@ -1580,6 +1582,7 @@ address {
   .home-wechat {
     justify-self: start;
     width: 126px;
+    height: auto;
   }
 
   .leadership-grid {
