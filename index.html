@@ -173,6 +173,75 @@
       <a class="back-to-top" href="#top">Top</a>
     </span>
   </footer>
+  <script>
+    (() => {
+      const newsGrid = document.querySelector('.lab-news .news-grid');
+      if (!newsGrid) {
+        return;
+      }
+
+      const newsCards = Array.from(newsGrid.querySelectorAll('.news-card'));
+      const newsBodies = newsCards.map((card) => card.querySelector('.news-body')).filter(Boolean);
+      if (!newsCards.length || !newsBodies.length) {
+        return;
+      }
+
+      let rafId = 0;
+
+      const setHeights = (value) => {
+        newsBodies.forEach((body) => {
+          body.style.height = value;
+        });
+      };
+
+      const syncHeights = () => {
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          if (window.innerWidth <= 900) {
+            setHeights('');
+            return;
+          }
+
+          setHeights('auto');
+
+          const rows = new Map();
+          newsCards.forEach((card) => {
+            const top = Math.round(card.getBoundingClientRect().top);
+            if (!rows.has(top)) {
+              rows.set(top, []);
+            }
+            rows.get(top).push(card);
+          });
+
+          rows.forEach((cards) => {
+            const maxHeight = Math.max(
+              ...cards.map((card) => {
+                const body = card.querySelector('.news-body');
+                return body ? Math.ceil(body.getBoundingClientRect().height) : 0;
+              })
+            );
+
+            cards.forEach((card) => {
+              const body = card.querySelector('.news-body');
+              if (body) {
+                body.style.height = `${maxHeight}px`;
+              }
+            });
+          });
+        });
+      };
+
+      window.addEventListener('load', syncHeights, { once: true });
+      window.addEventListener('resize', syncHeights);
+      window.addEventListener('orientationchange', syncHeights);
+
+      if (document.readyState === 'complete') {
+        syncHeights();
+      } else {
+        document.addEventListener('DOMContentLoaded', syncHeights, { once: true });
+      }
+    })();
+  </script>
 </body>
 </html>
 
