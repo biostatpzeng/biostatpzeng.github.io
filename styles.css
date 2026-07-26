@@ -154,7 +154,7 @@ main,
 .site-footer {
   position: relative;
   z-index: 1;
-  width: min(1120px, calc(100% - 42px));
+  width: min(1180px, calc(100% - 24px));
   margin: 0 auto;
 }
 
@@ -1640,7 +1640,7 @@ address {
   .site-header,
   main,
   .site-footer {
-    width: min(100% - 28px, 1120px);
+    width: min(100% - 24px, 1180px);
   }
 
   body {
