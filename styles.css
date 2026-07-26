@@ -13,6 +13,7 @@
   --logo-plate: #ffffff;
   --logo-shadow: 0 0 0 1px rgba(219, 227, 236, 0.65);
   --shadow: 0 18px 45px rgba(23, 32, 42, 0.08);
+  --side-nav-width: 150px;
 }
 
 * {
@@ -31,7 +32,7 @@ body {
   color: var(--body);
   background: #fff;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.65;
 }
 
@@ -102,7 +103,7 @@ body {
   margin: 0;
   color: var(--gold);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
   line-height: 1.2;
@@ -112,14 +113,14 @@ body {
 .launch-title {
   margin: 0;
   color: #000;
-  font-size: clamp(34px, 4vw, 54px);
+  font-size: clamp(36px, 4vw, 56px);
   line-height: 1;
 }
 
 .launch-subtitle {
   margin: 0;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.35;
 }
 
@@ -215,13 +216,13 @@ main,
 
 .brand strong {
   color: var(--ink);
-  font-size: 19px;
+  font-size: 21px;
   line-height: 1;
 }
 
 .brand small {
   color: var(--muted);
-  font-size: 13.4px;
+  font-size: 15.4px;
   font-weight: 600;
   line-height: 1;
 }
@@ -239,7 +240,7 @@ main,
   color: var(--muted);
   padding: 8px 0;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.1;
   white-space: nowrap;
@@ -270,6 +271,103 @@ main,
   transform: scaleX(1);
 }
 
+@media (min-width: 901px) {
+  main,
+  .site-footer {
+    width: calc(100% - var(--side-nav-width) - 30px);
+    margin-left: calc(var(--side-nav-width) + 20px);
+    margin-right: 10px;
+  }
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    width: var(--side-nav-width);
+    height: 100vh;
+    min-height: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 26px;
+    padding: 28px 16px 24px;
+    background: #f4f5f7;
+    backdrop-filter: none;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+
+  .brand {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .brand-mark {
+    width: 92px;
+    height: 92px;
+  }
+
+  .brand-text {
+    width: 92px;
+    align-items: center;
+    height: auto;
+    gap: 4px;
+  }
+
+  .brand strong,
+  .brand small {
+    width: 100%;
+    text-align: center;
+  }
+
+  .brand strong {
+    font-size: 20px;
+  }
+
+  .brand small {
+    font-size: 14.5px;
+  }
+
+  .nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 3px;
+    flex-wrap: nowrap;
+    margin-top: 2px;
+  }
+
+  .nav a {
+    display: block;
+    padding: 6px 10px 6px 0;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .nav a::after {
+    top: 7px;
+    right: auto;
+    bottom: 7px;
+    left: -16px;
+    width: 2px;
+    height: auto;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .nav a:hover::after,
+  .nav a.active::after {
+    transform: scaleY(1);
+  }
+}
+
 .hero {
   min-height: calc(100vh - 78px);
   display: grid;
@@ -288,7 +386,7 @@ main,
   margin: 0 0 10px;
   color: var(--rust);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -311,23 +409,23 @@ h3 {
 
 h1 {
   margin-bottom: 18px;
-  font-size: clamp(42px, 6vw, 72px);
+  font-size: clamp(44px, 6vw, 74px);
 }
 
 h2 {
   margin-bottom: 16px;
-  font-size: 30px;
+  font-size: 32px;
 }
 
 h3 {
   margin-bottom: 10px;
-  font-size: 21px;
+  font-size: 23px;
 }
 
 .lead {
   max-width: 760px;
   color: #2b3740;
-  font-size: 23px;
+  font-size: 25px;
   line-height: 1.45;
 }
 
@@ -352,7 +450,7 @@ h3 {
   border-radius: 7px;
   padding: 9px 15px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -441,7 +539,7 @@ h3 {
 .profile figcaption {
   margin-top: 14px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.45;
 }
 
@@ -452,7 +550,7 @@ h3 {
 
 .profile figcaption strong {
   color: var(--ink);
-  font-size: 17px;
+  font-size: 19px;
 }
 
 .home-intro {
@@ -467,14 +565,14 @@ h3 {
 .home-profile-copy h1 {
   margin-bottom: 16px;
   color: #000;
-  font-size: 34px;
+  font-size: 36px;
   line-height: 1.2;
 }
 
 .home-affiliation {
   margin: 0;
   color: var(--body);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.72;
 }
 
@@ -487,7 +585,7 @@ h3 {
 .home-section h2 {
   margin-bottom: 12px;
   color: #000;
-  font-size: 26px;
+  font-size: 28px;
   line-height: 1.25;
 }
 
@@ -495,14 +593,14 @@ h3 {
 .home-contact {
   margin-bottom: 13px;
   color: var(--body);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.72;
 }
 
 .research-interests h2 {
   color: #000;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -521,7 +619,7 @@ h3 {
   margin: 0;
   border-top: 1px solid var(--line);
   padding: 17px 0;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.62;
 }
 
@@ -591,7 +689,7 @@ h3 {
   margin: 0 0 5px;
   color: var(--gold);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
@@ -601,7 +699,7 @@ h3 {
 .home-wechat-copy p {
   margin: 0;
   color: #000;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.35;
   white-space: nowrap;
@@ -622,7 +720,7 @@ h3 {
 .section-title-row a {
   color: var(--teal-dark);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -656,7 +754,7 @@ h3 {
   border-radius: 8px;
   background: #fff;
   color: inherit;
-  min-height: 470px;
+  min-height: 520px;
   box-shadow: 0 12px 26px rgba(23, 32, 42, 0.06);
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
@@ -675,7 +773,7 @@ h3 {
 
 .news-cover {
   display: block;
-  height: 470px;
+  height: 520px;
   overflow: hidden;
   border-bottom: 0;
   padding: 0;
@@ -704,7 +802,7 @@ h3 {
   right: 14px;
   bottom: 14px;
   left: 14px;
-  height: 176px;
+  height: auto;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: #fff;
@@ -723,7 +821,7 @@ h3 {
   display: block;
   color: var(--gold);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.2;
@@ -733,7 +831,7 @@ h3 {
 .news-body h3 {
   margin: 7px 0 9px;
   color: #000;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.32;
 }
 
@@ -745,7 +843,7 @@ h3 {
 .news-body p {
   margin: 0;
   color: var(--body);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.5;
 }
 
@@ -816,7 +914,7 @@ h3 {
 .software-card p {
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 15.5px;
+  font-size: 17.5px;
   line-height: 1.6;
 }
 
@@ -873,7 +971,7 @@ address {
 .number {
   color: var(--gold);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -892,7 +990,7 @@ address {
   display: block;
   color: var(--teal-dark);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 32px;
+  font-size: 34px;
   line-height: 1;
 }
 
@@ -900,7 +998,7 @@ address {
   display: block;
   margin-top: 8px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
 }
 
@@ -912,7 +1010,7 @@ address {
 .page-title {
   margin-bottom: 10px;
   color: #000;
-  font-size: 26px;
+  font-size: 28px;
   line-height: 1.25;
 }
 
@@ -920,7 +1018,7 @@ address {
   max-width: 720px;
   margin-bottom: 6px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.58;
 }
 
@@ -941,7 +1039,7 @@ address {
   cursor: pointer;
   padding: 8px 0;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -999,7 +1097,7 @@ address {
   margin: 0;
   color: var(--rust);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
@@ -1013,7 +1111,7 @@ address {
   margin-bottom: 16px;
   padding-left: 8px;
   color: var(--body);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.7;
 }
 
@@ -1092,7 +1190,7 @@ address {
   margin: 0;
   color: var(--rust);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
@@ -1116,7 +1214,7 @@ address {
 .pi-body strong {
   display: block;
   color: #000;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   line-height: 1.35;
 }
@@ -1124,7 +1222,7 @@ address {
 .pi-body a,
 .supervisor-row a {
   color: var(--teal);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 400;
 }
 
@@ -1161,7 +1259,7 @@ address {
 
 .supervisor-row strong {
   color: #000;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
 }
 
@@ -1211,7 +1309,7 @@ address {
 .student-grid strong,
 .alumni-list strong {
   color: #000;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   line-height: 1.35;
 }
@@ -1220,7 +1318,7 @@ address {
 .alumni-list span {
   margin-top: 5px;
   color: var(--body);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 400;
   line-height: 1.35;
 }
@@ -1252,7 +1350,7 @@ address {
   max-width: 760px;
   margin-bottom: 6px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.58;
 }
 
@@ -1287,7 +1385,7 @@ address {
   border-left: 2px solid transparent;
   padding: 8px 0 8px 14px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -1343,7 +1441,7 @@ address {
 .software-item-header h2 {
   margin: 0 0 4px;
   color: #000;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -1351,7 +1449,7 @@ address {
 .software-item-header p {
   margin: 0;
   color: var(--muted);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   line-height: 1.45;
 }
@@ -1361,7 +1459,7 @@ address {
   margin: 0;
   padding: 18px 22px 20px;
   color: var(--body);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.7;
 }
 
@@ -1377,14 +1475,14 @@ address {
 
 .software-card h2 {
   margin-bottom: 8px;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .software-card a {
   align-self: flex-start;
   white-space: nowrap;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -1414,7 +1512,7 @@ address {
   margin: 0;
   color: var(--rust);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
@@ -1445,7 +1543,7 @@ address {
 .news-entry time {
   color: var(--gold);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.25;
@@ -1455,7 +1553,7 @@ address {
 .news-entry h3 {
   margin: 0 0 8px;
   color: #000;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.35;
 }
 
@@ -1467,14 +1565,14 @@ address {
 .news-entry p {
   margin: 0 0 10px;
   color: var(--body);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.58;
 }
 
 .news-entry a {
   color: var(--teal);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -1489,7 +1587,7 @@ address {
   gap: 18px;
   padding: 28px 0 36px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .footer-links {
@@ -1510,7 +1608,7 @@ address {
   color: var(--teal-dark);
   padding: 4px 10px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.2;
@@ -1632,7 +1730,7 @@ address {
     border-radius: 6px;
     background: #fff;
     padding: 6px 9px;
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
@@ -1644,15 +1742,15 @@ address {
   }
 
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 44px;
   }
 
   .home-profile-copy h1 {
-    font-size: 32px;
+    font-size: 34px;
   }
 
   .brand-mark {
@@ -1666,7 +1764,7 @@ address {
   }
 
   .home-section h2 {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .section-title-row {
@@ -1676,7 +1774,7 @@ address {
   }
 
   .research-interests h2 {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .news-card {
@@ -1697,7 +1795,7 @@ address {
   .home-affiliation,
   .home-section p,
   .home-contact {
-    font-size: 17px;
+    font-size: 19px;
   }
 
   .home-contact div {
@@ -1730,12 +1828,12 @@ address {
   }
 
   .page-title {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .publication-note,
   .software-note {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .team-section {
@@ -1749,7 +1847,7 @@ address {
   .pi-profile h2,
   .supervisor-panel h2,
   .member-section-heading h2 {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .pi-profile h2,
@@ -1796,12 +1894,12 @@ address {
   }
 
   .software-item-header h2 {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .software-description {
     padding: 16px 18px 18px;
-    font-size: 17px;
+    font-size: 19px;
   }
 
   .publication-list {
@@ -1810,20 +1908,20 @@ address {
 
   .publication-list li {
     padding-left: 5px;
-    font-size: 17px;
+    font-size: 19px;
   }
 
   h2 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .lead {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .nav a {
     padding: 8px 9px;
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .hero-actions,
@@ -1869,7 +1967,7 @@ address {
   }
 
   .launch-title {
-    font-size: 36px;
+    font-size: 38px;
   }
 }
 
