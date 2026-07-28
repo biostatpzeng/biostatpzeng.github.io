@@ -53,6 +53,8 @@
       <p class="publication-note">* authors contributed equally; # co-corresponding authors</p>
       <div class="publication-tabs" role="tablist" aria-label="Publication categories">
         <button class="publication-tab active" id="tab-selected-publications" type="button" role="tab" aria-selected="true" aria-controls="selected-publications" data-target="selected-publications">Selected Publications</button>
+        <button class="publication-tab" id="tab-methodology-publications" type="button" role="tab" aria-selected="false" aria-controls="methodology-publications" data-target="methodology-publications">Methodology Publications</button>
+        <button class="publication-tab" id="tab-transfer-learning-publications" type="button" role="tab" aria-selected="false" aria-controls="transfer-learning-publications" data-target="transfer-learning-publications">Transfer Learning</button>
         <button class="publication-tab" id="tab-collaborative-publications" type="button" role="tab" aria-selected="false" aria-controls="collaborative-publications" data-target="collaborative-publications">Collaborative Publications</button>
         <button class="publication-tab" id="tab-all-publications" type="button" role="tab" aria-selected="false" aria-controls="all-publications" data-target="all-publications">All Publications</button>
       </div>
@@ -157,6 +159,10 @@
         </ol>
       </div>
     </section>
+
+    <section class="publication-section publication-panel" id="methodology-publications" role="tabpanel" aria-labelledby="tab-methodology-publications" aria-hidden="true" hidden></section>
+
+    <section class="publication-section publication-panel" id="transfer-learning-publications" role="tabpanel" aria-labelledby="tab-transfer-learning-publications" aria-hidden="true" hidden></section>
 
     <section class="publication-section publication-panel" id="collaborative-publications" role="tabpanel" aria-labelledby="tab-collaborative-publications" aria-hidden="true" hidden>
       <div class="pub-year-block">
@@ -391,6 +397,102 @@
   </footer>
 
   <script>
+    const generatedPublicationPanels = {
+      'methodology-publications': [
+        'An integrative association analysis for complex diseases in underrepresented groups by leveraging the trans-ethnic genetic similarity',
+        'Transfer Learning Prediction of Early Exposures and Genetic Risk Score on Adult Obesity in Two Minority Cohorts',
+        'Polygenic prediction for underrepresented populations through transfer learning by utilizing genetic similarity shared with European populations',
+        'Mendelian randomization is good but not almighty',
+        'Broad evidence triangulation should be established for a valid and robust causal relation between air pollution and health outcome',
+        'Incorporating genetic similarity of auxiliary samples into eGene identification under the transfer learning framework',
+        'Leveraging trans-ethnic genetic risk scores to improve association power for complex traits in underrepresented populations',
+        'Similarity and diversity of genetic architecture for complex traits between East Asian and European populations',
+        'Evaluating significance of European-associated index SNPs in the East Asian population for 31 complex phenotypes',
+        'Detecting associated genes for complex traits shared across East Asian and European populations',
+        'A comprehensive comparison of multilocus association methods with summary statistics in genome-wide association studies',
+        'Simultaneous test and estimation of total genetic effect in eQTL integrative analysis through mixed models',
+        'Identifying pleiotropic genes for complex phenotypes with summary statistics from a perspective of composite null hypothesis testing',
+        'A comprehensive gene-centric pleiotropic association analysis for 14 psychiatric disorders with GWAS summary statistics',
+        'Integrative eQTL-weighted hierarchical Cox models for SNP-set based time-to-event association studies',
+        'IUSMMT: survival mediation analysis of gene expression with multiple DNA methylation exposures and its application to cancers of TCGA',
+        'Evaluating marginal genetic correlation of associated loci for complex diseases and traits between European and East Asian populations',
+        'Statistical methods for mediation analysis in the era of high-throughput genomics',
+        'Aggregating multiple expression prediction models improves the power of transcriptome wide association studies',
+        'Multi-trait transcriptome-wide association studies with probabilistic Mendelian randomization',
+        'Improved detection of potentially pleiotropic genes in coronary artery disease and chronic kidney disease using GWAS summary statistics',
+        'Multiple-Tissue Integrative Transcriptome-Wide Association Studies Discovered New Genes Associated With Amyotrophic Lateral Sclerosis',
+        'How can gene expression information improve prognostic prediction in TCGA cancers',
+        'Testing and controlling for horizontal pleiotropy with the probabilistic Mendelian randomization in transcriptome-wide association studies',
+        'Leveraging methylation to identify the potential causal genes on survival in lung adenocarcinoma and lung squamous cell carcinoma',
+        'Jackknife Model Averaging Prediction Methods for Complex Phenotypes with Gene Expression Levels by Integrating External Pathway Information',
+        'Pleiotropic Mapping and Annotation Selection in Genome-wide Association Studies with Penalized Gaussian Mixture Models',
+        'Identifying and exploiting trait-relevant tissues with multiple functional annotations in genome-wide association studies',
+        'Cis-SNPs Set Testing and PrediXcan Analysis for Gene Expression Data using Linear Mixed Models',
+        'Non-parametric genetic prediction of complex traits with latent Dirichlet process regression models',
+        'Prediction of gene expression with cis-SNPs using mixed models and regularization methods',
+        'Detecting epistasis with the marginal epistasis test in genetic mapping studies of quantitative traits',
+        'Statistical analysis for Genome-Wide Association Study',
+        'Bootstrap restricted likelihood ratio test for the detection of rare variants',
+        'Permutation-based variance component test in generalized linear mixed model with application to multilocus genetic association study',
+        'Likelihood ratio tests in rare variant detection for continuous phenotypes',
+        'Rare Variants Detection with Kernel Machine Learning Based on Likelihood Ratio Test',
+        'Variable selection approach for zero-inflated count data via adaptive lasso'
+      ],
+      'transfer-learning-publications': [
+        'An integrative association analysis for complex diseases in underrepresented groups by leveraging the trans-ethnic genetic similarity',
+        'Transfer Learning Prediction of Early Exposures and Genetic Risk Score on Adult Obesity in Two Minority Cohorts',
+        'Polygenic prediction for underrepresented populations through transfer learning by utilizing genetic similarity shared with European populations',
+        'Incorporating genetic similarity of auxiliary samples into eGene identification under the transfer learning framework',
+        'Leveraging trans-ethnic genetic risk scores to improve association power for complex traits in underrepresented populations'
+      ]
+    };
+
+    const normalizePublicationText = (text) => text.replace(/\s+/g, ' ').trim().toLowerCase();
+
+    const buildGeneratedPublicationPanel = (panelId, titleFragments) => {
+      const sourcePanel = document.getElementById('all-publications');
+      const targetPanel = document.getElementById(panelId);
+      if (!sourcePanel || !targetPanel) return;
+
+      const normalizedFragments = titleFragments.map(normalizePublicationText);
+      const seenItems = new Set();
+      targetPanel.replaceChildren();
+
+      sourcePanel.querySelectorAll('.pub-year-block').forEach((sourceYearBlock) => {
+        const year = sourceYearBlock.querySelector('.pub-year')?.textContent.trim();
+        const matchedItems = [];
+
+        sourceYearBlock.querySelectorAll('.publication-list li').forEach((item) => {
+          const itemText = normalizePublicationText(item.textContent);
+          const isMatched = normalizedFragments.some((fragment) => itemText.includes(fragment));
+          if (!isMatched || seenItems.has(itemText)) return;
+          seenItems.add(itemText);
+          matchedItems.push(item.cloneNode(true));
+        });
+
+        if (!year || matchedItems.length === 0) return;
+
+        const yearBlock = document.createElement('div');
+        yearBlock.className = 'pub-year-block';
+
+        const yearHeading = document.createElement('h2');
+        yearHeading.className = 'pub-year';
+        yearHeading.textContent = year;
+        yearBlock.append(yearHeading);
+
+        const list = document.createElement('ol');
+        list.className = 'publication-list';
+        matchedItems.forEach((item) => list.append(item));
+        yearBlock.append(list);
+
+        targetPanel.append(yearBlock);
+      });
+    };
+
+    Object.entries(generatedPublicationPanels).forEach(([panelId, titleFragments]) => {
+      buildGeneratedPublicationPanel(panelId, titleFragments);
+    });
+
     document.querySelectorAll('.publication-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
         const targetId = tab.dataset.target;
