@@ -100,40 +100,43 @@
       </ul>
     </section>
 
-    <section class="home-section lab-news">
+    <section class="home-section lab-news" id="lab-news" aria-labelledby="lab-news-heading">
       <div class="section-title-row">
-        <h2>Lab News</h2>
-        <a href="news.html">View more</a>
+        <h2 id="lab-news-heading">Lab News</h2>
+        <a href="news.html">All news <span aria-hidden="true">&rarr;</span></a>
       </div>
       <div class="news-grid">
         <a class="news-card" href="https://doi.org/10.1016/j.ssmph.2026.101946" target="_blank" rel="noopener" aria-label="Open handgrip strength and cardiovascular disease article">
           <div class="news-cover">
-            <img src="assets/news-handgrip-cover.jpg" alt="First page of the handgrip strength and cardiovascular disease paper">
+            <img src="assets/news-handgrip-cover.jpg" alt="First page of the handgrip strength and cardiovascular disease paper" loading="lazy" decoding="async">
           </div>
           <div class="news-body">
             <time datetime="2026-07-10">Jul 10, 2026</time>
             <h3>Published in <em>SSM - Population Health</em></h3>
             <p>Cross-cohort insights into handgrip strength transitions, cumulative burdens, and cardiovascular disease risk.</p>
+            <span class="news-link">Read publication <span aria-hidden="true">&nearr;</span></span>
           </div>
         </a>
         <a class="news-card" href="https://doi.org/10.1093/bib/bbag103" target="_blank" rel="noopener" aria-label="Open trans-ethnic genetic similarity article">
           <div class="news-cover">
-            <img src="assets/news-transethnic-cover.jpg" alt="First page of the trans-ethnic genetic similarity paper">
+            <img src="assets/news-transethnic-cover.jpg" alt="First page of the trans-ethnic genetic similarity paper" loading="lazy" decoding="async">
           </div>
           <div class="news-body">
             <time datetime="2026-03-09">Mar 9, 2026</time>
             <h3>Published in <em>Briefings in Bioinformatics</em></h3>
             <p>An integrative association analysis for complex diseases in underrepresented groups by leveraging trans-ethnic genetic similarity.</p>
+            <span class="news-link">Read publication <span aria-hidden="true">&nearr;</span></span>
           </div>
         </a>
         <a class="news-card" href="https://doi.org/10.1186/s12916-025-04177-w" target="_blank" rel="noopener" aria-label="Open biological aging acceleration and cardiovascular disease article">
           <div class="news-cover">
-            <img src="assets/news-aging-cover.jpg" alt="First page of the biological aging acceleration and cardiovascular disease paper">
+            <img src="assets/news-aging-cover.jpg" alt="First page of the biological aging acceleration and cardiovascular disease paper" loading="lazy" decoding="async">
           </div>
           <div class="news-body">
             <time datetime="2025-07-11">Jul 11, 2025</time>
             <h3>Published in <em>BMC Medicine</em></h3>
             <p>Biological aging acceleration transitions and burdens associated with incident cardiovascular disease in a national cohort.</p>
+            <span class="news-link">Read publication <span aria-hidden="true">&nearr;</span></span>
           </div>
         </a>
       </div>
@@ -174,75 +177,6 @@
       <a class="back-to-top" href="#top">Top</a>
     </span>
   </footer>
-  <script>
-    (() => {
-      const newsGrid = document.querySelector('.lab-news .news-grid');
-      if (!newsGrid) {
-        return;
-      }
-
-      const newsCards = Array.from(newsGrid.querySelectorAll('.news-card'));
-      const newsBodies = newsCards.map((card) => card.querySelector('.news-body')).filter(Boolean);
-      if (!newsCards.length || !newsBodies.length) {
-        return;
-      }
-
-      let rafId = 0;
-
-      const setHeights = (value) => {
-        newsBodies.forEach((body) => {
-          body.style.height = value;
-        });
-      };
-
-      const syncHeights = () => {
-        cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(() => {
-          if (window.innerWidth <= 900) {
-            setHeights('');
-            return;
-          }
-
-          setHeights('auto');
-
-          const rows = new Map();
-          newsCards.forEach((card) => {
-            const top = Math.round(card.getBoundingClientRect().top);
-            if (!rows.has(top)) {
-              rows.set(top, []);
-            }
-            rows.get(top).push(card);
-          });
-
-          rows.forEach((cards) => {
-            const maxHeight = Math.max(
-              ...cards.map((card) => {
-                const body = card.querySelector('.news-body');
-                return body ? Math.ceil(body.getBoundingClientRect().height) : 0;
-              })
-            );
-
-            cards.forEach((card) => {
-              const body = card.querySelector('.news-body');
-              if (body) {
-                body.style.height = `${maxHeight}px`;
-              }
-            });
-          });
-        });
-      };
-
-      window.addEventListener('load', syncHeights, { once: true });
-      window.addEventListener('resize', syncHeights);
-      window.addEventListener('orientationchange', syncHeights);
-
-      if (document.readyState === 'complete') {
-        syncHeights();
-      } else {
-        document.addEventListener('DOMContentLoaded', syncHeights, { once: true });
-      }
-    })();
-  </script>
 </body>
 </html>
 
