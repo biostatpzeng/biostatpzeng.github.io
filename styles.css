@@ -1299,6 +1299,10 @@ address {
   transform: translateY(-1px);
 }
 
+.student-grid a {
+  overflow-wrap: anywhere;
+}
+
 .student-grid strong,
 .student-grid span,
 .alumni-list strong,
