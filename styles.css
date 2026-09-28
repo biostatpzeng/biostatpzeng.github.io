@@ -862,10 +862,49 @@ h3 {
   padding-top: 16px;
   border-top: 1px solid var(--line);
   color: var(--teal-dark);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
+  font-family: inherit;
+  font-size: 19px;
+  font-weight: 400;
   line-height: 1.4;
+}
+
+@media (min-width: 1101px) {
+  .lab-news .section-title-row,
+  .lab-news .news-grid {
+    max-width: 1080px;
+    margin-inline: auto;
+  }
+
+  .news-grid {
+    gap: 24px;
+  }
+
+  .news-card {
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .news-cover {
+    height: 220px;
+    padding: 18px 20px 0;
+  }
+
+  .news-body {
+    padding: 20px;
+  }
+
+  .news-body h3 {
+    font-size: 22px;
+  }
+
+  .lab-news .news-body p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .news-link {
+    padding-top: 14px;
+  }
 }
 
 @media (min-width: 561px) and (max-width: 1100px) {
